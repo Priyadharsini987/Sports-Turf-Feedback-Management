@@ -1,5 +1,12 @@
 package com.examly.springapp.service;
 
-public class RatingService {
+import java.util.List;
+import com.examly.springapp.model.Rating;
 
+public interface RatingService {
+    Rating addRating(Rating rating);
+    List<Rating> getAllRatings();
+    Rating getRatingById(Long id);
+    Rating updateRating(Long id, Rating rating);
+    void deleteRating(Long id);
 }

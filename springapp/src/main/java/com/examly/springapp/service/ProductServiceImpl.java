@@ -1,5 +1,53 @@
 package com.examly.springapp.service;
 
-public class ProductServiceImpl {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.examly.springapp.model.Product;
+import com.examly.springapp.repository.ProductRepo;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private ProductRepo productRepo;
+
+    @Override
+    public Product addProduct(Product product) {
+        return productRepo.save(product);
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepo.findAll();
+    }
+
+    @Override
+    public Product getProductById(Long id) {
+        return productRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        Product existing = productRepo.findById(id).orElse(null);
+        if (existing == null) return null;
+
+        existing.setProductName(product.getProductName());
+        existing.setPrice(product.getPrice());
+        existing.setCategory(product.getCategory());
+
+        return productRepo.save(existing);
+    }
+
+    @Override
+    public List<Product> getProductsByCategoryName(String categoryName) {
+        return productRepo.findByCategory_CategoryName(categoryName);
+    }
+
+    @Override
+    public Product getProductByName(String productName) {
+        return productRepo.findByProductName(productName);
+    }
 }

@@ -1,10 +1,6 @@
 package com.examly.springapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Rating {
@@ -13,45 +9,26 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
 
-    private Integer score;
+    private int score;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    private Product product;
-
+    // Constructors
     public Rating() {}
-
-    public Long getRatingId() {
-        return ratingId;
-    }
-
-    public void setRatingId(Long ratingId) {
-        this.ratingId = ratingId;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
+    public Rating(int score, User user) {
         this.score = score;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
-    }
+    // Getters & Setters
+    public Long getRatingId() { return ratingId; }
+    public void setRatingId(Long ratingId) { this.ratingId = ratingId; }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+    public int getScore() { return score; }
+    public void setScore(int score) { this.score = score; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

@@ -1,10 +1,6 @@
 package com.examly.springapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Feedback {
@@ -13,25 +9,27 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long feedbackId;
 
-    private Integer rating;
+    @Column(nullable = false)
     private String comment;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    private Product product;
-
+    // Constructors
     public Feedback() {}
+    public Feedback(String comment, User user) {
+        this.comment = comment;
+        this.user = user;
+    }
 
+    // Getters & Setters
     public Long getFeedbackId() { return feedbackId; }
     public void setFeedbackId(Long feedbackId) { this.feedbackId = feedbackId; }
-    public Integer getRating() { return rating; }
-    public void setRating(Integer rating) { this.rating = rating; }
+
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }
+
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
 }

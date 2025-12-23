@@ -1,5 +1,12 @@
 package com.examly.springapp.service;
 
-public class FeedbackService {
+import java.util.List;
+import com.examly.springapp.model.Feedback;
 
+public interface FeedbackService {
+    Feedback addFeedback(Feedback feedback);
+    List<Feedback> getAllFeedbacks();
+    Feedback getFeedbackById(Long id);
+    Feedback updateFeedback(Long id, Feedback feedback);
+    void deleteFeedback(Long id);
 }

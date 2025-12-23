@@ -1,34 +1,22 @@
 package com.examly.springapp.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.examly.springapp.model.Category;
-import com.examly.springapp.repository.CategoryRepo;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 
-@Service
-public class CategoryService {
+import java.util.List;
 
-    @Autowired
-    private CategoryRepo categoryRepository;
+public interface CategoryService {
 
-    public Category addCategory(Category category) {
-        return categoryRepository.save(category);
-    }
+    Category addCategory(Category category);
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
-    }
+    List<Category> getAllCategories();
 
-    public Optional<Category> getCategoryById(Long id) {
-        return categoryRepository.findById(id);
-    }
+    Category getCategoryById(Long id);
 
-    public Category updateCategory(Long id, Category category) {
-        category.setCategoryId(id);
-        return categoryRepository.save(category);
-    }
+    Category updateCategory(Long id, Category category);
+
+    boolean deleteCategory(Long id);
+
+    ResponseEntity<Page<Category>> getCategoriesByPage(int pageNumber, int pageSize);
 }
