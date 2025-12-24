@@ -1,36 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.examly.springapp.SpringappApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 80, Failures: 11, Errors: 0, Skipped: 0, Time elapsed: 4.379 s <<< FAILURE! - in com.examly.springapp.SpringappApplicationTests
-com.examly.springapp.SpringappApplicationTests.Day10_testAddProduct  Time elapsed: 0.008 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<201> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day10_testAddProduct(SpringappApplicationTests.java:959)
+Tests run: 80, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 4.952 s <<< FAILURE! - in com.examly.springapp.SpringappApplicationTests
+com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName  Time elapsed: 0.012 s  <<< FAILURE!
+java.lang.AssertionError: No value at JSON path "$[0].productName"
+	at com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName(SpringappApplicationTests.java:1127)
+Caused by: com.jayway.jsonpath.PathNotFoundException: Filter: [0]['productName'] can only be applied to arrays. Current context is: Updated Laptop
 
-com.examly.springapp.SpringappApplicationTests.Day10_testGetAllProducts  Time elapsed: 0.004 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day10_testGetAllProducts(SpringappApplicationTests.java:973)
-
-com.examly.springapp.SpringappApplicationTests.Day10_testGetProductById  Time elapsed: 0.004 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day10_testGetProductById(SpringappApplicationTests.java:986)
-
-com.examly.springapp.SpringappApplicationTests.Day10_testUpdateProduct  Time elapsed: 0.004 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day10_testUpdateProduct(SpringappApplicationTests.java:1003)
-
-com.examly.springapp.SpringappApplicationTests.Day12_testGetProductsByCategoryName  Time elapsed: 0.003 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day12_testGetProductsByCategoryName(SpringappApplicationTests.java:1087)
-
-com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName  Time elapsed: 0.003 s  <<< FAILURE!
-java.lang.AssertionError: Status expected:<200> but was:<404>
-	at com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName(SpringappApplicationTests.java:1126)
-
-com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName_NotFound  Time elapsed: 0.011 s  <<< FAILURE!
-java.lang.AssertionError: Response content expected:<No products found with name: UnknownProduct> but was:<>
-	at com.examly.springapp.SpringappApplicationTests.Day12_testGetProductByName_NotFound(SpringappApplicationTests.java:1138)
-
-com.examly.springapp.SpringappApplicationTests.Day13_test_exception_Directory_Exists  Time elapsed: 0.003 s  <<< FAILURE!
+com.examly.springapp.SpringappApplicationTests.Day13_test_exception_Directory_Exists  Time elapsed: 0.004 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at com.examly.springapp.SpringappApplicationTests.Day13_test_exception_Directory_Exists(SpringappApplicationTests.java:1144)
 

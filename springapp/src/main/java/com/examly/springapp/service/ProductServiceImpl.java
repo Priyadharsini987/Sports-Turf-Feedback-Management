@@ -1,53 +1,69 @@
 package com.examly.springapp.service;
 
-import java.util.List;
+import com.examly.springapp.model.Product;
+import com.examly.springapp.repository.ProductRepo;
+import com.examly.springapp.repository.CategoryRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.examly.springapp.model.Product;
-import com.examly.springapp.repository.ProductRepo;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepo productRepo;
+    private ProductRepo productRepository;
 
+    @Autowired
+    private CategoryRepo categoryRepository;
+
+    // CREATE
     @Override
     public Product addProduct(Product product) {
-        return productRepo.save(product);
+        // Optional: verify category exists
+        if (product.getCategory() != null) {
+            categoryRepository.findById(product.getCategory().getCategoryId())
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+        }
+        return productRepository.save(product);
     }
 
+    // GET ALL
     @Override
     public List<Product> getAllProducts() {
-        return productRepo.findAll();
+        return productRepository.findAll();
     }
 
+    // GET BY ID
     @Override
     public Product getProductById(Long id) {
-        return productRepo.findById(id).orElse(null);
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElse(null);
     }
 
+    // UPDATE
     @Override
     public Product updateProduct(Long id, Product product) {
-        Product existing = productRepo.findById(id).orElse(null);
-        if (existing == null) return null;
+        return productRepository.findById(id).map(existingProduct -> {
+            existingProduct.setProductName(product.getProductName());
+            existingProduct.setPrice(product.getPrice());
 
-        existing.setProductName(product.getProductName());
-        existing.setPrice(product.getPrice());
-        existing.setCategory(product.getCategory());
-
-        return productRepo.save(existing);
+            if (product.getCategory() != null) {
+                existingProduct.setCategory(product.getCategory());
+            }
+            return productRepository.save(existingProduct);
+        }).orElse(null);
     }
-
     @Override
-    public List<Product> getProductsByCategoryName(String categoryName) {
-        return productRepo.findByCategory_CategoryName(categoryName);
-    }
+public List<Product> getProductsByCategoryName(String categoryName) {
+    return productRepository.findByCategory_CategoryName(categoryName);
+}
 
-    @Override
-    public Product getProductByName(String productName) {
-        return productRepo.findByProductName(productName);
-    }
+@Override
+public Product getProductByName(String productName) {
+    return productRepository.findByProductName(productName);
+}
+
 }
