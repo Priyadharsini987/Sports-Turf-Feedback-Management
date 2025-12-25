@@ -1,9 +1,12 @@
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/SpringappApplication.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/aop/LoggingAspect.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/configuration/AppConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/CategoryController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/FeedbackController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/ProductController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/RatingController.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/controller/UserController.java
+/home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/exception/GlobalExceptionHandler.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Category.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Feedback.java
 /home/coder/project/workspace/springapp/src/main/java/com/examly/springapp/model/Product.java
